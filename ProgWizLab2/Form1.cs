@@ -17,7 +17,8 @@ namespace ProgWizLab2
         {
             InitializeComponent();
         }
-
+        int cenaKomputera = 0;
+        int cenaMonitora = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -26,8 +27,11 @@ namespace ProgWizLab2
         private void button2_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
-            form2.Show();
-            this.Hide();
+            if (form2.ShowDialog() == DialogResult.OK)
+            {
+                cenaKomputera = form2.CenaKomputera;
+                textBox3.Text = (cenaKomputera + cenaMonitora).ToString(); 
+            }
         }
 
 
@@ -39,8 +43,11 @@ namespace ProgWizLab2
         private void button1_Click_1(object sender, EventArgs e)
         {
             Form3 form3 = new Form3();
-            form3.Show();
-            this.Hide();
+            if (form3.ShowDialog() == DialogResult.OK)
+            {
+                cenaMonitora = form3.CenaMonitora;
+                textBox3.Text = (cenaKomputera + cenaMonitora).ToString(); 
+            }
         }
     }
 }

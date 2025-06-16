@@ -16,10 +16,21 @@ namespace ProgWizLab2
         {
             InitializeComponent();
         }
+        public string WybranyMonitor { get; private set; }
+        public int CenaMonitora { get; private set; }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                textBox1.Text = "";
+                return;
+            }
 
+            var wybrany = listView1.SelectedItems[0].Text;
+
+            if (wybrany.Contains("Mon_a")) textBox1.Text = "600";
+            else if (wybrany.Contains("Mon_b")) textBox1.Text = "1000";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -29,7 +40,19 @@ namespace ProgWizLab2
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Wybierz monitor!");
+                return;
+            }
 
+            WybranyMonitor = listView1.SelectedItems[0].Text;
+
+            if (WybranyMonitor.Contains("Mon_a")) CenaMonitora = 600;
+            else if (WybranyMonitor.Contains("Mon_b")) CenaMonitora = 1000;
+
+            DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -37,6 +60,11 @@ namespace ProgWizLab2
             Form1 form1 = new Form1();
             form1.Show();
             this.Hide();
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
